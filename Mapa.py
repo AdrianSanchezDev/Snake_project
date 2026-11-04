@@ -1,3 +1,5 @@
+import os
+import time
 def crear_mapa(filas, columnas):
     mapa = []
     for i in range(filas):
@@ -21,27 +23,45 @@ def crear_serpiente(mapa):
     return serpiente, cabeza_serpiente
     
 def movimiento_serpiente(mapa, serpiente, cabeza_serpiente):
-    movimiento= input("usa W,A,S,D para mover la serpiente")
-        if movimiento=="W":
-            if cabeza_serpiente[0] != 0:
+    movimiento= input("usa W,A,S,D para mover la serpiente: ")
+    cabeza_vieja = []
+    cabeza_vieja.append(cabeza_serpiente[0])
+    cabeza_vieja.append(cabeza_serpiente[1])
+    if movimiento=="W":
+        if cabeza_serpiente[0] != 0:
                 cabeza_serpiente[0]= cabeza_serpiente[0]-1
-        elif movimiento=="A":
-            if cabeza_serpiente[1] != 0:
+    elif movimiento=="A":
+        if cabeza_serpiente[1] != 0:
                 cabeza_serpiente[1]= cabeza_serpiente[1]-1
-        elif movimiento=="S":
-            if cabeza_serpiente[0] != len(mapaD)
+    elif movimiento=="S":
+        if cabeza_serpiente[0] != len(mapa):
                 cabeza_serpiente[0]= cabeza_serpiente[0]+1
-        elif movimiento=="D":
-            if cabeza serpiente[1] != len(mapaD[0])
+    elif movimiento=="D":
+        if cabeza_serpiente[1] != len(mapa[0]):
                 cabeza_serpiente[1]= cabeza_serpiente[1]+1
-
+    serpiente[0] = cabeza_vieja
+    return cabeza_serpiente, serpiente
+def dibujar_serpiente(serpiente, cabeza_serpiente, mapa):
+    os.system("cls")
+    dibujar_tablero(mapa)
+    time.sleep(0.5)
+    mapa[cabeza_serpiente[0]][cabeza_serpiente[1]] = "O"
+    for i in range(len(serpiente)):
+        mapa[serpiente[i][0]][serpiente[i][1]] = "#"
+    os.system("cls")
+    dibujar_tablero(mapa)
+    time.sleep(0.5)
 def main():
     filas=10
     columnas=10
     mapaD=crear_mapa(filas, columnas)
     dibujar_tablero(mapaD)
     serpiente, cabeza_serpiente=crear_serpiente(mapaD)
-    movimiento_serpiente(mapa, serpiente, cabeza_serpiente)
-
+    dibujar_serpiente(serpiente,cabeza_serpiente,mapaD)
+    jugando = True
+    while jugando:
+        nueva_cabeza, nueva_posicion = movimiento_serpiente(mapaD, serpiente, cabeza_serpiente)
+        nuevo_mapa = crear_mapa(filas, columnas)
+        dibujar_tablero(nuevo_mapa)
+        dibujar_serpiente(nueva_posicion,nueva_cabeza,nuevo_mapa)
 main()
-
