@@ -1,5 +1,6 @@
 import os
 import time
+
 def crear_mapa(filas, columnas):
     mapa = []
     for i in range(filas):
@@ -18,7 +19,7 @@ def dibujar_tablero(mapa):
         print("")
 
 def crear_serpiente(mapa):
-    serpiente= [[5,1], [5,2]]
+    serpiente= [[5,2], [5,1]]
     cabeza_serpiente= [5,3]
     return serpiente, cabeza_serpiente
     
@@ -39,8 +40,12 @@ def movimiento_serpiente(mapa, serpiente, cabeza_serpiente):
     elif movimiento=="D":
         if cabeza_serpiente[1] != len(mapa[0]):
                 cabeza_serpiente[1]= cabeza_serpiente[1]+1
-    serpiente[0] = cabeza_vieja
-    return cabeza_serpiente, serpiente
+    nueva_serpiente = []
+    nueva_serpiente.append(cabeza_vieja)
+    for i in range(len(serpiente)-1):
+        nueva_serpiente.append([serpiente[i][0],serpiente[i][1]])
+    return cabeza_serpiente, nueva_serpiente
+
 def dibujar_serpiente(serpiente, cabeza_serpiente, mapa):
     os.system("cls")
     dibujar_tablero(mapa)
@@ -51,6 +56,7 @@ def dibujar_serpiente(serpiente, cabeza_serpiente, mapa):
     os.system("cls")
     dibujar_tablero(mapa)
     time.sleep(0.5)
+    
 def main():
     filas=10
     columnas=10
@@ -64,4 +70,5 @@ def main():
         nuevo_mapa = crear_mapa(filas, columnas)
         dibujar_tablero(nuevo_mapa)
         dibujar_serpiente(nueva_posicion,nueva_cabeza,nuevo_mapa)
+        serpiente = nueva_posicion
 main()
