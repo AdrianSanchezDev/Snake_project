@@ -1,13 +1,15 @@
 import os
 import time
+import random
 
 def crear_mapa(filas, columnas):
-    mapa = []
+    mapa = []       
     for i in range(filas):
         fila = []
         for j in range(columnas):
             fila.append("-")
         mapa.append(fila)
+    
     return mapa
 
 def dibujar_tablero(mapa):
@@ -64,7 +66,26 @@ def crear_nueva_serpiente(serpiente, cabeza_vieja):
         nueva_serpiente.append([serpiente[i][0],serpiente[i][1]])
     return nueva_serpiente
 
-def dibujar_serpiente(serpiente, cabeza_serpiente, mapa):
+def crear_comida(mapa, serpiente, cabeza_serpiente):
+    posF_comida = random.randint(0,9)
+    posC_comida = random.randint(0,9)
+    pos_comida = [posF_comida, posC_comida]
+    
+    while (pos_comida[0] == cabeza_serpiente[0] and pos_comida[1] == cabeza_serpiente[1]) or pos_comida in serpiente:
+        posF_comida = random.randint(0,9)
+        posC_comida = random.randint(0,9)
+        pos_comida = [posF_comida, posC_comida]
+        
+    for i in range(len(mapa)):
+        for j in range(len(mapa[i])):
+            if mapa[i][j] == "M":
+                return pos_comida
+            
+    mapa[posF_comida][posC_comida] = "M"
+        
+    return pos_comida
+
+def dibujar_serpiente(serpiente, cabeza_serpiente, mapa, pos_comida):
     os.system("cls")
     dibujar_tablero(mapa)
     time.sleep(0.5)
@@ -72,8 +93,11 @@ def dibujar_serpiente(serpiente, cabeza_serpiente, mapa):
     for i in range(len(serpiente)):
         mapa[serpiente[i][0]][serpiente[i][1]] = "#"
     os.system("cls")
-    dibujar_tablero(mapa)
-    time.sleep(0.5)
+    
+    mapa[pos_comida[0]][pos_comida[1]] = "M"
+    
+    return mapa
+    
     
 def main():
     filas=10
@@ -81,13 +105,21 @@ def main():
     mapaD=crear_mapa(filas, columnas)
     dibujar_tablero(mapaD)
     serpiente, cabeza_serpiente=crear_serpiente(mapaD)
-    dibujar_serpiente(serpiente,cabeza_serpiente,mapaD)
+    pos_comida = crear_comida(mapaD, serpiente, cabeza_serpiente)
+    mapa = dibujar_serpiente(serpiente,cabeza_serpiente,mapaD, pos_comida)
+    
+    dibujar_tablero(mapa)
+    time.sleep(0.5)
     jugando = True
+    
     while jugando:
         nueva_cabeza, nueva_posicion, jugando = movimiento_serpiente(mapaD, serpiente, cabeza_serpiente, jugando)
         nuevo_mapa = crear_mapa(filas, columnas)
         dibujar_tablero(nuevo_mapa)
-        dibujar_serpiente(nueva_posicion,nueva_cabeza,nuevo_mapa)
+        nuevo_mapa = dibujar_serpiente(nueva_posicion,nueva_cabeza,nuevo_mapa, pos_comida)
+            
+        dibujar_tablero(nuevo_mapa)
+        time.sleep(0.5)
         serpiente = nueva_posicion
     print("Has perdido.")
 main()
