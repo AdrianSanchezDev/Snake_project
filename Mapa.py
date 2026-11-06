@@ -23,7 +23,7 @@ def crear_serpiente(mapa):
     cabeza_serpiente= [5,3]
     return serpiente, cabeza_serpiente
     
-def movimiento_serpiente(mapa, serpiente, cabeza_serpiente):
+def movimiento_serpiente(mapa, serpiente, cabeza_serpiente, jugando):
     movimiento= input("usa W,A,S,D para mover la serpiente: ")
     cabeza_vieja = []
     cabeza_vieja.append(cabeza_serpiente[0])
@@ -33,26 +33,30 @@ def movimiento_serpiente(mapa, serpiente, cabeza_serpiente):
             cabeza_serpiente[0]= cabeza_serpiente[0]-1
             nueva_serpiente = crear_nueva_serpiente(serpiente, cabeza_vieja)
         else:
-            return cabeza_serpiente, serpiente
+            jugando = False
+            return cabeza_serpiente, serpiente, jugando
     elif movimiento=="A":
         if cabeza_serpiente[1] != 0:
             cabeza_serpiente[1]= cabeza_serpiente[1]-1
             nueva_serpiente = crear_nueva_serpiente(serpiente, cabeza_vieja)
         else:
-            return cabeza_serpiente, serpiente
+            jugando = False
+            return cabeza_serpiente, serpiente, jugando
     elif movimiento=="S":
         if cabeza_serpiente[0] != len(mapa) - 1:
             cabeza_serpiente[0]= cabeza_serpiente[0]+1
             nueva_serpiente = crear_nueva_serpiente(serpiente, cabeza_vieja)
         else:
-            return cabeza_serpiente, serpiente
+            jugando = False
+            return cabeza_serpiente, serpiente, jugando
     elif movimiento=="D":
         if cabeza_serpiente[1] != len(mapa[0]) - 1:
             cabeza_serpiente[1]= cabeza_serpiente[1]+1
             nueva_serpiente = crear_nueva_serpiente(serpiente, cabeza_vieja)
         else:
-            return cabeza_serpiente, serpiente
-    return cabeza_serpiente, nueva_serpiente
+            jugando = False
+            return cabeza_serpiente, serpiente, jugando
+    return cabeza_serpiente, nueva_serpiente, jugando
 def crear_nueva_serpiente(serpiente, cabeza_vieja):    
     nueva_serpiente = []
     nueva_serpiente.append(cabeza_vieja)
@@ -80,9 +84,10 @@ def main():
     dibujar_serpiente(serpiente,cabeza_serpiente,mapaD)
     jugando = True
     while jugando:
-        nueva_cabeza, nueva_posicion = movimiento_serpiente(mapaD, serpiente, cabeza_serpiente)
+        nueva_cabeza, nueva_posicion, jugando = movimiento_serpiente(mapaD, serpiente, cabeza_serpiente, jugando)
         nuevo_mapa = crear_mapa(filas, columnas)
         dibujar_tablero(nuevo_mapa)
         dibujar_serpiente(nueva_posicion,nueva_cabeza,nuevo_mapa)
         serpiente = nueva_posicion
+    print("Has perdido.")
 main()
