@@ -30,21 +30,35 @@ def movimiento_serpiente(mapa, serpiente, cabeza_serpiente):
     cabeza_vieja.append(cabeza_serpiente[1])
     if movimiento=="W":
         if cabeza_serpiente[0] != 0:
-                cabeza_serpiente[0]= cabeza_serpiente[0]-1
+            cabeza_serpiente[0]= cabeza_serpiente[0]-1
+            nueva_serpiente = crear_nueva_serpiente(serpiente, cabeza_vieja)
+        else:
+            return cabeza_serpiente, serpiente
     elif movimiento=="A":
         if cabeza_serpiente[1] != 0:
-                cabeza_serpiente[1]= cabeza_serpiente[1]-1
+            cabeza_serpiente[1]= cabeza_serpiente[1]-1
+            nueva_serpiente = crear_nueva_serpiente(serpiente, cabeza_vieja)
+        else:
+            return cabeza_serpiente, serpiente
     elif movimiento=="S":
-        if cabeza_serpiente[0] != len(mapa):
-                cabeza_serpiente[0]= cabeza_serpiente[0]+1
+        if cabeza_serpiente[0] != len(mapa) - 1:
+            cabeza_serpiente[0]= cabeza_serpiente[0]+1
+            nueva_serpiente = crear_nueva_serpiente(serpiente, cabeza_vieja)
+        else:
+            return cabeza_serpiente, serpiente
     elif movimiento=="D":
-        if cabeza_serpiente[1] != len(mapa[0]):
-                cabeza_serpiente[1]= cabeza_serpiente[1]+1
+        if cabeza_serpiente[1] != len(mapa[0]) - 1:
+            cabeza_serpiente[1]= cabeza_serpiente[1]+1
+            nueva_serpiente = crear_nueva_serpiente(serpiente, cabeza_vieja)
+        else:
+            return cabeza_serpiente, serpiente
+    return cabeza_serpiente, nueva_serpiente
+def crear_nueva_serpiente(serpiente, cabeza_vieja):    
     nueva_serpiente = []
     nueva_serpiente.append(cabeza_vieja)
     for i in range(len(serpiente)-1):
         nueva_serpiente.append([serpiente[i][0],serpiente[i][1]])
-    return cabeza_serpiente, nueva_serpiente
+    return nueva_serpiente
 
 def dibujar_serpiente(serpiente, cabeza_serpiente, mapa):
     os.system("cls")
