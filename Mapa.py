@@ -102,13 +102,19 @@ def comer(puntuacion, pos_comida, mapa, serpiente, cabeza_serpiente):
     if cabeza_serpiente == pos_comida:
         puntuacion = puntuacion + 1
         nueva_comida = crear_comida(mapa, serpiente, cabeza_serpiente)
-        return nueva_comida, puntuacion
-    
-    return pos_comida, puntuacion
+        ultima_posicion = serpiente[len(serpiente) - 1]
+        return nueva_comida, puntuacion, ultima_posicion
+    return pos_comida, puntuacion, [-1,-1]
+
+def crecer(ultima_posicion, puntuacion, serpiente, mapa):
+    if ultima_posicion != [-1,-1]:
+        serpiente.append(ultima_posicion)
+
 def main():
     filas=10
     columnas=10
     puntuacion = 0
+    ultima_posicion = [-1,-1]
     mapaD=crear_mapa(filas, columnas)
     dibujar_tablero(puntuacion, mapaD)
     serpiente, cabeza_serpiente=crear_serpiente(mapaD)
@@ -123,7 +129,8 @@ def main():
         nuevo_mapa = crear_mapa(filas, columnas)
         dibujar_tablero(puntuacion, nuevo_mapa)
         nuevo_mapa = dibujar_serpiente(puntuacion, nueva_posicion,nueva_cabeza,nuevo_mapa, pos_comida)
-        pos_comida, puntuacion = comer(puntuacion, pos_comida, nuevo_mapa, nueva_posicion, nueva_cabeza)    
+        crecer(ultima_posicion, puntuacion, serpiente, mapa)
+        pos_comida, puntuacion, ultima_posicion = comer(puntuacion, pos_comida, nuevo_mapa, nueva_posicion, nueva_cabeza)    
         dibujar_tablero(puntuacion, nuevo_mapa)
         time.sleep(0.5)
         serpiente = nueva_posicion
