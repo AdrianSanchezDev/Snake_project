@@ -142,7 +142,8 @@ def menu():
         opcion = int(input("¿Qué quieres hacer?"))
 
 def main():
-    #while terminar = false
+    terminar = False
+    while terminar == False:
         respuesta = menu()
         if respuesta == False:
             return False
@@ -173,5 +174,6 @@ def main():
             time.sleep(0.5)
             serpiente = nueva_posicion
         print("Has perdido.")
+        terminar = False
     menu()
 main()
