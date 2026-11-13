@@ -122,31 +122,56 @@ def victoria(puntuacion):
         return False
     return True
 
+def menu():
+    print("OPCIONES:")
+    print("1. Jugar")
+    print("2. Reglas")
+    print("3. Salir")
+    opcion = int(input("¿Qué quieres hacer?"))
+    while opcion != 1:
+        if opcion == 1:
+            return True
+        elif opcion == 2:
+            print("- Usa las teclas WASD para mover la serpiente.")
+            print("- Guía a la serpiente hacia la comida (M)")
+            print("- Cada vez que comes, la serpiente se hace más larga y tu puntuación aumenta.")
+            print("- Si llegas a 20 puntos ganas, pero si la serpiente choca contra los bordes o contra ella misma, pierdes.")
+        elif opcion == 3:
+            print("Hasta luego.")
+            return False
+        opcion = int(input("¿Qué quieres hacer?"))
+
 def main():
-    filas=10
-    columnas=10
-    puntuacion = 0
-    mapaD=crear_mapa(filas, columnas)
-    dibujar_tablero(puntuacion, mapaD)
-    serpiente, cabeza_serpiente=crear_serpiente(mapaD)
-    pos_comida = crear_comida(mapaD, serpiente, cabeza_serpiente)
-    mapa = dibujar_serpiente(puntuacion, serpiente,cabeza_serpiente,mapaD, pos_comida)
-    
-    dibujar_tablero(puntuacion, mapa)
-    time.sleep(0.5)
-    jugando = True
-    while jugando:
-        jugando = victoria(puntuacion)
-        if jugando == False:
-            return -1
-        nueva_cabeza, nueva_posicion, jugando, pos_Final = movimiento_serpiente(mapaD, serpiente, cabeza_serpiente, jugando)
-        nuevo_mapa = crear_mapa(filas, columnas)
-        dibujar_tablero(puntuacion, nuevo_mapa)
-        nuevo_mapa = dibujar_serpiente(puntuacion, nueva_posicion,nueva_cabeza,nuevo_mapa, pos_comida)
-        pos_comida, puntuacion = comer(puntuacion, pos_comida, nuevo_mapa, nueva_posicion, nueva_cabeza, pos_Final)    
-        dibujar_tablero(puntuacion, nuevo_mapa)
-        jugando = colision(nueva_posicion, nueva_cabeza)
+    #while terminar = false
+        respuesta = menu()
+        if respuesta == False:
+            return False
+        filas=10
+        columnas=10
+        puntuacion = 0
+        mapaD=crear_mapa(filas, columnas)
+        dibujar_tablero(puntuacion, mapaD)
+        serpiente, cabeza_serpiente=crear_serpiente(mapaD)
+        pos_comida = crear_comida(mapaD, serpiente, cabeza_serpiente)
+        mapa = dibujar_serpiente(puntuacion, serpiente,cabeza_serpiente,mapaD, pos_comida)
+        
+        dibujar_tablero(puntuacion, mapa)
         time.sleep(0.5)
-        serpiente = nueva_posicion
-    print("Has perdido.")
+        jugando = True
+        colisionJ = True
+        while jugando and colisionJ:
+            victoriaJ = victoria(puntuacion)
+            if victoriaJ == False:
+                return -1
+            nueva_cabeza, nueva_posicion, jugando, pos_Final = movimiento_serpiente(mapaD, serpiente, cabeza_serpiente, jugando)
+            nuevo_mapa = crear_mapa(filas, columnas)
+            dibujar_tablero(puntuacion, nuevo_mapa)
+            nuevo_mapa = dibujar_serpiente(puntuacion, nueva_posicion,nueva_cabeza,nuevo_mapa, pos_comida)
+            pos_comida, puntuacion = comer(puntuacion, pos_comida, nuevo_mapa, nueva_posicion, nueva_cabeza, pos_Final)    
+            dibujar_tablero(puntuacion, nuevo_mapa)
+            colisionJ = colision(nueva_posicion, nueva_cabeza)
+            time.sleep(0.5)
+            serpiente = nueva_posicion
+        print("Has perdido.")
+    menu()
 main()
