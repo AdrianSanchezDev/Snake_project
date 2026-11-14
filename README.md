@@ -4,19 +4,19 @@
 Juego clásico de **Snake** desarrollado para ejecutarse en consola. El objetivo principal es guiar a la serpiente para que coma los elementos que aparecen en el tablero, evitando chocar contra las paredes o contra su propio cuerpo, mientras se incrementa la puntuación.
 
 ## 👥 Integrantes del Equipo
-· **Adrián**
-· **Miguel**
-· **Vlad**
+* **Adrián**
+* **Miguel**
+* **Vlad**
 
 ## 🚀 Funcionalidades
-· Movimiento fluido de la serpiente en el tablero de consola.
-· Generación aleatoria de comida.
-· Detección de colisiones contra las paredes y contra el propio cuerpo.
-· Sistema de puntuación en tiempo real.
+* Movimiento fluido de la serpiente en el tablero de consola.
+* Generación aleatoria de comida.
+* Detección de colisiones contra las paredes y contra el propio cuerpo.
+* Sistema de puntuación en tiempo real.
 
 ## 💻 Requisitos
-· **Python 3.14.8**.
-· Terminal o consola compatible.
+* **Python 3.14.8**.
+* Terminal o consola compatible.
 
 ## 📥 Instalación y Ejecución
 
