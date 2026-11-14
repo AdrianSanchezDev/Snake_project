@@ -21,15 +21,15 @@ Juego clásico de **Snake** desarrollado para ejecutarse en consola. El objetivo
 ## 📥 Instalación y Ejecución
 
 1. **Clonar el repositorio:**
-   git clone https://github.com/AdrianSanchezDev/Snake_project
-   cd Snake_project
+* git clone https://github.com/AdrianSanchezDev/Snake_project
+* cd Snake_project
    
 2. **Ejecutar el juego desde la terminal:**
-   python Serpiente.py
-   (Nota: En Linux o macOS puede ser necesario usar python3 Serpiente.py)
+* python Serpiente.py
+* (Nota: En Linux o macOS puede ser necesario usar python3 Serpiente.py)
 
 ## 🎮 Controles
-W	= Mover hacia arriba
-S	= Mover hacia abajo
-A	= Mover hacia la izquierda
-D	= Mover hacia la derecha
+* W	= Mover hacia arriba
+* S	= Mover hacia abajo
+* A	= Mover hacia la izquierda
+* D	= Mover hacia la derecha
