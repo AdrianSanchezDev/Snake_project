@@ -1,3 +1,5 @@
+
+https://github.com/user-attachments/assets/c5e9057f-a5ce-4e99-a7f0-e90de287fae5
 # 🐍 SNAKE PROJECT
 
 ## 📋 Descripción
@@ -18,7 +20,7 @@ Juego clásico de **Snake** desarrollado para ejecutarse en consola. El objetivo
 * **Python 3.14.8**.
 * Terminal o consola compatible.
 
-## 📥 Instalación y Ejecución
+## 📥 Instalación y ejecución
 
 1. **Clonar el repositorio:**
 * git clone https://github.com/AdrianSanchezDev/Snake_project
@@ -33,3 +35,9 @@ Juego clásico de **Snake** desarrollado para ejecutarse en consola. El objetivo
 * S	= Mover hacia abajo
 * A	= Mover hacia la izquierda
 * D	= Mover hacia la derecha
+
+## 🎮 Video de demostración
+
+<p align="center">
+<video src="https://github.com/user-attachments/assets/b1a60a15-e115-4871-a678-9734f88ff573" width="100%" controls muted autoplay loop></video>
+</p>
