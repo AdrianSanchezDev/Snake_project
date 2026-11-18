@@ -37,6 +37,4 @@ Juego clásico de **Snake** desarrollado para ejecutarse en consola. El objetivo
 
 ## 📹 Video de demostración
 
-<p align="center">
-<video src="https://github.com/user-attachments/assets/c888d614-fe57-4f98-ae86-f0888681e60a" width="100%" controls muted autoplay loop></video>
-</p>
+https://github.com/user-attachments/assets/c888d614-fe57-4f98-ae86-f0888681e60a
